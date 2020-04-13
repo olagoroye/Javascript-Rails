@@ -5,3 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+List.create([
+    {title: "TRAVEL LIST"},
+    {title: "WEEKEND SNACK"},
+    {title: "TO DO ITEMS"},
+    {title: "THANK GOD IS FRIDAY"},
+    {title: "KIDS NEEDS"}
+])
