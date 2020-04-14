@@ -5,12 +5,12 @@ class ListsController < ApplicationController
   def index
     @lists = List.all
 
-    render json: @lists
+    render json: @lists, include: :items
   end
 
   # GET /lists/1
   def show
-    render json: @list
+    render json: @list, include: :items
   end
 
   # POST /lists
