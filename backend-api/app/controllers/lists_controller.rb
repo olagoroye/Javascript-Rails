@@ -18,7 +18,7 @@ class ListsController < ApplicationController
     @list = List.new(list_params)
 
     if @list.save
-      render json: @list, status: :created, location: @list
+      render json: @list, include: [:item], status: :created, location: @list
     else
       render json: @list.errors, status: :unprocessable_entity
     end
@@ -41,6 +41,7 @@ class ListsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_list
+      binding.pry
       @list = List.find(params[:id])
     end
 
