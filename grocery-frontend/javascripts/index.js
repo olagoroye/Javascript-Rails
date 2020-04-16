@@ -40,18 +40,18 @@ async function createItem(e) {
         list_ids.push(checkboxes[i].value);
       }
     }
-   
+
     const strongParams = {
         item: {
-          name,
-          price,
-          brand,
-          description,
-          list_ids
+          name: name,
+          price: price,
+          brand: brand,
+          description: description,
+          list_ids: list_ids
         }
-    }
-    const response = await fetch("http://localhost:3000/lists", {
-        method: "POST",
+    }  
+    const response = await fetch("http://localhost:3000/items", {   
+      method: "POST",
         headers: {
           "Accept": "application/json",
           "Content-Type": "application/json"
@@ -71,13 +71,13 @@ async function renderLists() {
     let response = await fetch('http://localhost:3000/lists');
     let data = await response.json();
   
-    List.all = data.map(list => new Location(list));
+    List.all = data.map(list => new List(list));
   
     List.all.forEach(list => {
       let div = document.createElement('div');
       let h3 = document.createElement('h3');
       h3.textContent = list.name;
       div.appendChild(h3)
-      listDiv.appendChild(div);
+      listsDiv.appendChild(div);
     })
   }

@@ -3,34 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="javascripts/models/list.js"></script>
-    <script src="javascripts/index.js"></script>
     
     <title>Grocery List App</title>
 </head>
 <body>
     <h1>Grocery List App</h1>
+
     <form id="item-form">
-        <div class="input-field">
+        <div >
             <label for="name">Item Name</label>
             <input type="text" name="name" id="name" placeholder="Item name">
         </div>
   
-        <div class="input-field">
+        <div>
             <label for="price">Price</label>
             <input type="number" name="price" id="price" placeholder="Item Price">
         </div>  
 
-        <div class="input-field">
+        <div>
             <label for="brand">Brand Name</label>
             <input type="text" name="brand" id="brand" placeholder="Enter Brand">
         </div>
   
-        <div class="input-field">
+        <div>
             <label for="description">Description</label>
             <input type="text" name="description" id="description" placeholder="Item Spec">
         </div>  
         <br>  
+
         <div id= "list-checkboxes">    
         </div>
         <br>
@@ -38,6 +38,9 @@
         <input type="submit" value="create item">
     </form>
     <div id="lists"></div>
+    
+    <script src="javascripts/models/list.js"></script>
+    <script src="javascripts/index.js"></script>
     
 </body>
 </html>
