@@ -33,10 +33,12 @@ class ItemsController < ApplicationController
     end
   end
 
-  # DELETE /items/1
-  def destroy
-    @item.destroy
-  end
+  #    #DELETE /items/1
+  # def destroy  
+  #   @item = Item.find(params[:id])
+  #   @item.destroy
+  #   render json: {}, status: :no_content
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -49,3 +51,6 @@ class ItemsController < ApplicationController
       params.require(:item).permit(:name, :price, :brand, :description, list_ids: [])
     end
 end
+
+
+#list_items_attributes: [:item_id, :quantity], item_ids: []
