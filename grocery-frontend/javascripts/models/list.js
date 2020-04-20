@@ -48,7 +48,12 @@ class List {
             list_ids.push(checkboxes[i].value);
           }
         }
-    
+
+        if(list_ids.length == 0) {
+            console.log("You have to select at least one list.");
+            return;
+        }
+
         const strongParams = {
             item: {
               name: name,
@@ -97,11 +102,11 @@ class List {
                     div1.appendChild(delete_btn)
                     div1.style.display= "flex"
                     delete_btn.addEventListener("click", delete_item)
-                    let target_id = item.id
                     function delete_item(){
-                        API.delete(`/list_items/${target_id}`)
+                        API.delete(`/remove_item/${list.id}/${item.id}`)
                         .then((data)=>{
                             console.log(data)
+                            List.renderLists();
                         })
                         .catch((error)=>{
                             console.log(error)
