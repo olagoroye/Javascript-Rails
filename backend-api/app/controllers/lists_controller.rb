@@ -41,7 +41,7 @@ class ListsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_list
-      binding.pry
+      #binding.pry
       @list = List.find(params[:id])
     end
 
