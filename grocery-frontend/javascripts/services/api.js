@@ -38,4 +38,4 @@ class API {
         .then(resp => resp.text())
     }
   
-  }//class
+  }//delete

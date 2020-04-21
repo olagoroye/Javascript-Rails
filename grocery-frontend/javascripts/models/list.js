@@ -67,11 +67,14 @@ class List {
         API.post('/items', strongParams)
         .then(data=>{
             // render html for item just created 
+            const form = document.getElementById("item-form");
+            form.reset();
+            List.renderLists();
             console.log(data);
         })
         .catch((error)=> {console.log(error)});       
         
-        List.renderLists();
+        
     }
 
     static renderLists() {
