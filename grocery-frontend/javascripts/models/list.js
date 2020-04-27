@@ -35,7 +35,7 @@ class List {
 
     static createItem(e) {
         e.preventDefault();
-      
+    //   
         const name = document.getElementById('name').value;
         const price = document.getElementById('price').value;
         const brand = document.getElementById('brand').value;
