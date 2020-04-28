@@ -32,7 +32,8 @@ class List {
         List.renderLists();
         //List.collapse('item0')
     }
-
+    
+    
     static createItem(e) {
         e.preventDefault();
     //   
@@ -86,6 +87,7 @@ class List {
         API.get('/lists')
         .then((data)=>{
             data.forEach((list, key) => {
+                 
                 console.log(list)
                 let div = document.createElement('div');
                 let sub_div = document.createElement('div')
@@ -105,7 +107,7 @@ class List {
                     div1.appendChild(delete_btn)
                     div1.style.display= "flex"
                     delete_btn.addEventListener("click", delete_item)
-                    function delete_item(){
+        function delete_item(){
                         API.delete(`/remove_item/${list.id}/${item.id}`)
                         .then((data)=>{
                             console.log(data)
@@ -139,6 +141,28 @@ class List {
             console.log(error)
         })    
       }
+    static addSortByButton(){
+    // 
+            list.items.sort();
+            
+            let list = document.querySelectorAll('lists');
+            listsDiv.innerHTML = '';
+            let ul = list[i].createElement('ul');
+        API.get('/lists')
+            
+            for (let i= 0; i <list.length; i++){
+                
+                let li = list[i].createElement('li');
+                let sortby_btn = document.createElement('button');
+                let text = document.createTextNode("Submit")
+                ul.appendChild(li);
+                ul.appendChild(sortby_btn);
+                sortby_btn.appendChild(text)
+                sortby_btn.addEventListener("click", sort_list)
+            }
+            
+            
+    }
 
 }
 
