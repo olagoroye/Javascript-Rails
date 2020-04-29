@@ -38,8 +38,16 @@
         <input type="submit" value="create item">
     </form>
     <br>
-    <button onclick='addSortByButton()'>Sort Alphabetically</button>
+    <button id='sort-btn'>Sort Alphabetically</button>
+    <br>
     <div id="lists"></div>
+    <!-- <script>
+        let list = document.getElementById('lists').innerHTML;
+        function addSortByButton(){
+            list.sort();
+            list = document.getElementById('lists').innerHTML;
+        }
+    </script> -->
     <script src="javascripts/services/api.js"></script>
     <script src="javascripts/models/list.js"></script>
     <script src="javascripts/index.js"></script>

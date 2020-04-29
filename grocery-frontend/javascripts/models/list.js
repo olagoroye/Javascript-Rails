@@ -79,7 +79,7 @@ class List {
     }
 
     static renderLists() {
-        console.log('render start')
+        // console.log('render start')
         List.all = [];
         let listsDiv = document.getElementById('lists');
         listsDiv.innerHTML = '';
@@ -141,27 +141,51 @@ class List {
             console.log(error)
         })    
       }
-    static addSortByButton(){
-    // 
-            list.items.sort();
-            
-            let list = document.querySelectorAll('lists');
-            listsDiv.innerHTML = '';
-            let ul = list[i].createElement('ul');
-        API.get('/lists')
-            
-            for (let i= 0; i <list.length; i++){
+    static addSortByButton() {
+        // document.getElementById('lists').addEventListener('onclick', (e) =>{
+        //     let list = document.getElementById
+        // })
+        
+        List.all.sort(function (a, b){
+            const keyA = a.title.toUpperCase();
+            const keyB = b.title.toUpperCase();
+            if(keyA < keyB){return -1;}
+            if(keyA > keyB){return 1;}
+            return 0;
+        });
+         console.log(List.all);
+        // List.renderLists();
+        let list = document.getElementById('lists').innerHTML;
+    //    API.get('/lists')
+    //    .then((data) =>{
+    //        data.sort(function (a, b){
+    //            var keyA = a.title;
+    //            var keyB = b.title;
+    //            if(keyA >keyB){return -1;}
+    //            if(keyA  < keyB){return 1;}
+    //            return 0;
+    //        });
+    //        data.forEach((list, key)=>{
+    //            console.log(list)
+    //         let div = document.createElement('div');
+    //         let ul = document.createElement('div');
+    //         let li = document.createElement('li');
+    //         let check = true;
+
+    //         li.innerText = list.title;
+    //         ul.appendChild(li);
+    //         list.items.sort(function (a,b){
+    //             var keyA = a.name;
+    //             var keyB = b.name; 
+    //            if(keyA >keyB){return -1;}
+    //            if(keyA  < keyB){return 1;}
+    //            return 0;
+    //         })
+    //        })
+    //        List.renderLists(true);
+    //    })
+        
                 
-                let li = list[i].createElement('li');
-                let sortby_btn = document.createElement('button');
-                let text = document.createTextNode("Submit")
-                ul.appendChild(li);
-                ul.appendChild(sortby_btn);
-                sortby_btn.appendChild(text)
-                sortby_btn.addEventListener("click", sort_list)
-            }
-            
-            
     }
 
 }
