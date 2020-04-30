@@ -11,11 +11,8 @@ class List {
     }
 
     static loadlist(){
-
-        API.get('/lists')
-        .then(function(lists){
-            lists.forEach(data => {
-                let list = new List(data);
+            List.all.forEach(list => {
+               
                 let div = document.getElementById('list-checkboxes');
                 let checkbox = document.createElement('input');
                 let label = document.createElement('label');
@@ -27,12 +24,21 @@ class List {
                 div.appendChild(checkbox);
                 div.appendChild(label);
             })
-        })
-        .catch(errors => console.log(errors))
-        List.renderLists();
+
+        // List.renderLists();
         //List.collapse('item0')
     }
-    
+    static getAllLists(){
+
+        return API.get('/lists')
+        .then(function(lists){
+            lists.forEach(data => {
+                let list = new List(data);
+            })
+        })
+        .catch(errors => console.log(errors))
+    } 
+    // loads all the list 
     
     static createItem(e) {
         e.preventDefault();
@@ -68,8 +74,8 @@ class List {
         API.post('/items', strongParams)
         .then(data=>{
             // render html for item just created 
-            const form = document.getElementById("item-form");
-            form.reset();
+            const form = document.getElementById("item-form").reset();
+            // form.reset();
             List.renderLists();
             console.log(data);
         })
@@ -77,16 +83,17 @@ class List {
         
         
     }
+    // create Items
 
     static renderLists() {
         // console.log('render start')
-        List.all = [];
+
         let listsDiv = document.getElementById('lists');
         listsDiv.innerHTML = '';
       
-        API.get('/lists')
-        .then((data)=>{
-            data.forEach((list, key) => {
+        // API.get('/lists')
+        // .then((data)=>{
+            List.all.forEach((list, key) => {
                  
                 console.log(list)
                 let div = document.createElement('div');
@@ -110,8 +117,12 @@ class List {
         function delete_item(){
                         API.delete(`/remove_item/${list.id}/${item.id}`)
                         .then((data)=>{
-                            console.log(data)
+                            List.all = [];
+                            List.getAllLists().then(data =>{
+                            // List.loadlist();
                             List.renderLists();
+                            })
+
                         })
                         .catch((error)=>{
                             console.log(error)
@@ -136,10 +147,10 @@ class List {
                 }
                 listsDiv.appendChild(div);
             })           
-        })
-        .catch((error)=>{
-            console.log(error)
-        })    
+        // })
+        // .catch((error)=>{
+        //     console.log(error)
+        // })    
       }
     static addSortByButton() {
         // document.getElementById('lists').addEventListener('onclick', (e) =>{
@@ -153,41 +164,27 @@ class List {
             if(keyA > keyB){return 1;}
             return 0;
         });
-         console.log(List.all);
-        // List.renderLists();
-        let list = document.getElementById('lists').innerHTML;
-    //    API.get('/lists')
-    //    .then((data) =>{
-    //        data.sort(function (a, b){
-    //            var keyA = a.title;
-    //            var keyB = b.title;
-    //            if(keyA >keyB){return -1;}
-    //            if(keyA  < keyB){return 1;}
-    //            return 0;
-    //        });
-    //        data.forEach((list, key)=>{
-    //            console.log(list)
-    //         let div = document.createElement('div');
-    //         let ul = document.createElement('div');
-    //         let li = document.createElement('li');
-    //         let check = true;
+        // console.log(List.all);
+        //  List.renderLists();
+       List.all.forEach(function(list){
+        list.items.sort(function (a,b){
+                        var keyA = a.name.toUpperCase();
+                        var keyB = b.name.toUpperCase(); 
+                       if(keyA >keyB){return 1;}
+                       if(keyA  < keyB){return -1;}
+                       return 0;
+                    })
+            })
+      
+     List.renderLists();
+        
 
-    //         li.innerText = list.title;
-    //         ul.appendChild(li);
-    //         list.items.sort(function (a,b){
-    //             var keyA = a.name;
-    //             var keyB = b.name; 
-    //            if(keyA >keyB){return -1;}
-    //            if(keyA  < keyB){return 1;}
-    //            return 0;
-    //         })
-    //        })
-    //        List.renderLists(true);
-    //    })
         
                 
     }
 
 }
+// 
 
-// all list available for items to be saved =checkboxes
+
+   
